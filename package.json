@@ -1,0 +1,28 @@
+{
+  "name": "awesome-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha \"scr\/test\/**\/*test.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denisdnc/awesome-crud.git"
+  },
+  "author": "Denis De Nadai Carraro",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/denisdnc/awesome-crud/issues"
+  },
+  "homepage": "https://github.com/denisdnc/awesome-crud#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
