@@ -1,4 +1,5 @@
-# awesome-crud
+# Awesome CRUD
+# An Node JS supercool REST API
 
 The idea is to build an REST API in Node JS using best practices, patterns and frameworks that can be used in an enterprise application.
 
