@@ -1,14 +1,14 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
-const Config = require('scr/main/config/app-setup');
-const UserController = require('scr/main/user/gateways/controllers/user-controller');
+const Config = require('scr/main/config/app-setup')
+const UserController = require('scr/main/user/gateways/controllers/user-controller')
 
-Config.init(app);
-UserController.init(app);
+Config.init(app)
+UserController.init(app)
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log('Example app listening on port:', process.env.PORT || '3000');
-});
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Example app listening on port:', process.env.PORT || '3000')
+})
 
-module.exports = app;
+module.exports = app

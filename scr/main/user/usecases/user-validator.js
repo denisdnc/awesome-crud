@@ -1,14 +1,13 @@
 const UserValidator = (() => {
-
-  var ValidateModel = require('validate-model');
-  var validateAll = ValidateModel.validateAll;
+  const ValidateModel = require('validate-model')
+  const validateAll = ValidateModel.validateAll
 
   const UserRules = {
     name: {
       title: 'Name',
       validate: [{
         validator: 'isLength',
-        arguments: [1, 255],
+        arguments: [1, 255]
       }]
     },
     email: {
@@ -26,7 +25,7 @@ const UserValidator = (() => {
         message: '{TITLE} is too short'
       }]
     }
-  };
+  }
 
   const validate = (user) => {
     return validateAll(UserRules, user)
@@ -35,7 +34,6 @@ const UserValidator = (() => {
   return {
     validate: validate
   }
+})()
 
-})();
-
-module.exports = UserValidator;
+module.exports = UserValidator
