@@ -5,10 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "NODE_PATH=./ nodemon app.js",
-    "test": "NODE_PATH=./ mocha \"scr/test/**/*test.js\"",
+    "test": "NODE_PATH=./ LOG_LEVEL=warn mocha \"scr/test/**/*test.js\"",
     "lint-js": "eslint --ext .js ."
   },
-  "pre-push": ["lint-js", "test"],
+  "pre-push": [
+    "lint-js",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/denisdnc/awesome-crud.git"
@@ -22,7 +25,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "validate-model": "0.0.2"
+    "validate-model": "0.0.2",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "chai": "^4.0.2",

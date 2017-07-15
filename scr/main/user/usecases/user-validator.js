@@ -1,8 +1,7 @@
-const UserValidator = (() => {
-  const ValidateModel = require('validate-model')
-  const validateAll = ValidateModel.validateAll
+const userValidator = (() => {
+  let validateModel
 
-  const UserRules = {
+  const userRules = {
     name: {
       title: 'Name',
       validate: [{
@@ -28,12 +27,17 @@ const UserValidator = (() => {
   }
 
   const validate = (user) => {
-    return validateAll(UserRules, user)
+    return validateModel.validateAll(userRules, user)
+  }
+
+  const init = (options) => {
+    validateModel = options.validateModel
   }
 
   return {
+    init: init,
     validate: validate
   }
 })()
 
-module.exports = UserValidator
+module.exports = userValidator

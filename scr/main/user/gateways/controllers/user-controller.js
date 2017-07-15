@@ -1,28 +1,49 @@
-const UserController = (() => {
-  const createUser = require('scr/main/user/usecases/create-user')
+const userController = (() => {
+  let app
+  let logger
+  let createUser
 
-  const init = (app) => {
+  const map = () => {
     app.get('/user', (req, res) => {
+      logger.log('debug', 'userController: Received GET on /user with data: ')
       res.status(200).json({
         description: 'test'
       })
     })
 
     app.post('/user', (req, res) => {
-      createUser.execute(req.body, (errors, result) => {
-        if (errors) {
+      logger.log('debug', 'userController: Received POST on /user with data: ',
+        req.body)
+      createUser.execute(req.body, (err, data) => {
+        if (err) {
+          logger.log('debug', 'userController: error POST on /user with data: ',
+            err)
           res.status(422).json({
-            errors: errors
+            errors: err
           })
         }
-        res.status(201).json(result)
+        logger.log('debug', 'userController: Success POST on /user with data: ',
+          data)
+        res.status(201).json(data)
       })
     })
   }
 
+  const init = (options) => {
+    app = options.app
+    logger = options.logger
+    createUser = options.createUser
+
+    createUser.init({
+      logger: logger,
+      validator: require('scr/main/user/usecases/user-validator')
+    })
+  }
+
   return {
-    init: init
+    init: init,
+    map: map
   }
 })()
 
-module.exports = UserController
+module.exports = userController
