@@ -1,26 +1,33 @@
 const express = require('express')
 const app = express()
 
-const winston = require('winston')
-const logger = new (winston.Logger)({
-  transports: [
-    new (winston.transports.Console)({
-      'timestamp': true
-    })
-  ]
-})
-logger.level = process.env.LOG_LEVEL || 'info'
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
 
-const config = require('scr/main/config/app-setup')
+// DI container
+const diContainer = require('scr/main/di-container')
 
-config.init({
-  app: app,
-  logger: logger
+// Factories - Basic
+diContainer.factory('logger', require('scr/main/config/logger'))
+
+// Factories - Usecases
+diContainer.factory('validateModel', () => {
+  return require('validate-model');
 })
+diContainer.factory('userValidator', require('scr/main/usecases/user-validator'))
+diContainer.factory('createUser', require('scr/main/usecases/create-user'))
+
+// Factories - Controllers
+diContainer.factory('userController', require('scr/main/gateways/user-controller'))
+
+// Dependencies
+const logger = diContainer.get('logger')
+const userController = diContainer.get('userController')
+
+// Routes
+app.get('/user', userController.get)
+app.post('/user', userController.create)
 
 app.listen(process.env.PORT || 3000, () => {
-  logger.log('info', 'Application started and listening on port:',
-    process.env.PORT || '3000')
+  logger.log('info', 'Application started and listening on port:', process.env.PORT || '3000')
 })
-
-module.exports = app

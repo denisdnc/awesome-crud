@@ -25,6 +25,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "parse-fn-args": "0.0.2",
     "validate-model": "0.0.2",
     "winston": "^2.3.1"
   },
