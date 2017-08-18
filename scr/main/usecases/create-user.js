@@ -1,14 +1,26 @@
-module.exports = (logger, userValidator) => {
+module.exports = (logger, validateUser, userRepository) => {
   const execute = (user, callback) => {
-    logger.log('info', 'createUser: Received user data: ', user)
-    const result = userValidator.execute(user)
+    const result = validateUser.execute(user)
     if (!result.valid) {
-      logger.log('warn', 'createUser: Validation error on user: ',
-        result.messages)
-      callback(result.messages)
+      const err = {
+        status: 422,
+        message: result.messages
+      }
+      callback(err)
+      return
     }
-    logger.log('info', 'createUser: Created user: ', user)
-    callback(null, user)
+
+    userRepository.create(user, (err, user) => {
+      if (err) {
+        const errObject = {
+          status: 500,
+          message: 'Error creating user on database'
+        }
+        callback(errObject)
+        return
+      }
+      callback(null, user)
+    })
   }
 
   return {

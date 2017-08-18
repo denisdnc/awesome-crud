@@ -5,26 +5,26 @@ const it = mocha.it
 const request = require('supertest')
 const app = require('app')
 
-describe('GET /user', () => {
-  it('respond with json', (done) => {
-    request(app)
-      .get('/user')
-      .set('Accept', 'application/json')
-      .expect(200)
-      .expect({
-        description: 'test'
-      })
-      .end((err, res) => {
-        if (err) return done(err)
-        done()
-      })
-  })
-})
+// describe('GET /user', () => {
+//   it('respond with json', (done) => {
+//     request(app)
+//       .get('/user')
+//       .set('Accept', 'application/json')
+//       .expect(200)
+//       .expect({
+//         description: 'test'
+//       })
+//       .end((err, res) => {
+//         if (err) return done(err)
+//         done()
+//       })
+//   })
+// })
 
-describe('POST /user', () => {
+describe('POST /users', () => {
   it('respond with json', (done) => {
     request(app)
-      .post('/user')
+      .post('/users')
       .set('Content-Type', 'application/json')
       .send({
         name: 'user name',
