@@ -4,8 +4,8 @@ const it = mocha.it
 const chai = require('chai')
 const expect = chai.expect
 
-const createUser = require('scr/main/user/usecases/create-user')
-const userFixtures = require('scr/test/user/fixtures/user-fixtures')
+const createUser = require('scr/main/usecases/create-user')
+const userFixtures = require('scr/test/fixtures/user-fixtures')
 
 describe('crate user', () => {
   describe('given an valid user', () => {

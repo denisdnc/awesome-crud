@@ -8,32 +8,38 @@ For this, it will be used:
 #### Architecture:
 - [The Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 
-#### Java Script:
-- [JavaScript Standard Style](https://github.com/standard/standard)
+#### Design patterns:
 - [Revealing Module Pattern](https://toddmotto.com/mastering-the-module-pattern/)
-
-#### NodeJS:
+- [Dependency Injection Container](https://www.nodejsdesignpatterns.com/)
 - [Error-First Callbacks](http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/)
 
-#### Frameworks:
+#### Java Script:
+- [JavaScript Standard Style](https://github.com/standard/standard)
+
+#### Application Frameworks:
 - [Express JS](http://expressjs.com/)
+- [validate-model](https://github.com/danielweinmann/validate-model)
+
+#### Testing Frameworks:
 - [Mocha](https://mochajs.org/)
 - [Chai](http://chaijs.com/)
 - [supertest](https://github.com/visionmedia/supertest)
-- [pre-push](https://github.com/dflourusso/pre-push)
+
+#### Code quality frameworks:
 - [ESlint](https://github.com/eslint/eslint)
-- [validate-model](https://github.com/danielweinmann/validate-model)
+- [pre-push](https://github.com/dflourusso/pre-push)
 
 #### Package manager:
 - [npm](https://www.npmjs.com/)
 
-## Using:
+## Running:
 - clone the repository
 - "npm run start" to start the application
 - "npm run test" to run tests
 - "npm run lint-js" to lint js files
 
 ###### Refencences:
+- https://www.nodejsdesignpatterns.com/
 - https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html
 - https://toddmotto.com/mastering-the-module-pattern/
 - http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/
