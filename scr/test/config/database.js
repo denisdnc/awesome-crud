@@ -12,7 +12,7 @@ module.exports = () => {
       console.log('HOST ' + config.host)
       console.log('PORT ' + config.port)
 
-      var mongouri = mongoServerInstance.getMongouri('myDatabaseName')
+      // var mongouri = mongoServerInstance.getMongouri('myDatabaseName')
     }
   })
 
