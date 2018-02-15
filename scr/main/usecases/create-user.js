@@ -1,10 +1,10 @@
-module.exports = (logger, validateUser, userRepository) => {
+module.exports = (validateUser, userRepository) => {
   const execute = (user, callback) => {
     const result = validateUser.execute(user)
     if (!result.valid) {
       const err = {
         status: 422,
-        message: result.messages
+        messages: result.messages
       }
       callback(err)
       return
@@ -20,6 +20,7 @@ module.exports = (logger, validateUser, userRepository) => {
         return
       }
       callback(null, user)
+      return
     })
   }
 

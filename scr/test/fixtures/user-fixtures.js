@@ -1,4 +1,4 @@
-const UserFixtures = (() => {
+const userFixtures = (() => {
   const valid = () => {
     return {
       name: 'name',
@@ -7,9 +7,18 @@ const UserFixtures = (() => {
     }
   }
 
+  const invalid = () => {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    }
+  }
+
   return {
-    valid: valid
+    valid: valid,
+    invalid, invalid
   }
 })()
 
-module.exports = UserFixtures
+module.exports = userFixtures
