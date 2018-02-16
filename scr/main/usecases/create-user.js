@@ -1,26 +1,20 @@
 module.exports = (validateUser, userRepository) => {
   const execute = (user, callback) => {
-    const result = validateUser.execute(user)
-    if (!result.valid) {
-      const err = {
-        status: 422,
-        messages: result.messages
-      }
-      callback(err)
+    const errors = validateUser.execute(user)
+    if (errors.length > 0) {
+      callback(errors, user)
       return
     }
 
-    userRepository.create(user, (err, user) => {
-      if (err) {
-        const errObject = {
-          status: 500,
-          message: 'Error creating user on database'
-        }
-        callback(errObject)
+    userRepository.create(user, (error, user) => {
+      if (error) {
+        const errorsResult = [{
+          messages: ['error creating user on database']
+        }]
+        callback(errorsResult, user)
         return
       }
       callback(null, user)
-      return
     })
   }
 

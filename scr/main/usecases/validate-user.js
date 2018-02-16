@@ -1,32 +1,43 @@
-module.exports = (validateModel) => {
-  const userRules = {
-    name: {
-      title: 'Name',
-      validate: [{
-        validator: 'isLength',
-        arguments: [1, 255],
-        message: '{TITLE} is mandatory'
-      }]
-    },
-    email: {
-      title: 'Email',
-      validate: [{
-        validator: 'isEmail',
-        message: '{TITLE} must be valid'
-      }]
-    },
-    password: {
-      title: 'Password',
-      validate: [{
-        validator: 'isLength',
-        arguments: [6, 255],
-        message: '{TITLE} is too short'
-      }]
+module.exports = (validator) => {
+  const validate = (errors, property, rules) => {
+    const result = validator.value(property, rules)
+    if (!result.approved) {
+      errors.push({
+        property: rules.title,
+        messages: result.errors
+      })
     }
   }
 
   const execute = (user) => {
-    return validateModel.validateAll(userRules, user)
+    const errors = []
+
+    validate(errors, user, {
+      title: 'user',
+      required: true
+    })
+
+    validate(errors, user.name, {
+      title: 'name',
+      required: true
+    })
+
+    validate(errors, user.email, {
+      title: 'email',
+      required: true,
+      email: true
+    })
+
+    validate(errors, user.password, {
+      title: 'password',
+      required: true,
+      range: {
+        min: 6,
+        max: 50
+      }
+    })
+
+    return errors
   }
 
   return {
