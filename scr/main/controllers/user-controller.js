@@ -4,7 +4,7 @@ module.exports = (logger, createUser, findUserById) => {
 
     createUser.execute(req.body, (err, data) => {
       if (err) {
-        res.status(err.status).json({
+        res.status(422).json({
           errors: err
         })
       }

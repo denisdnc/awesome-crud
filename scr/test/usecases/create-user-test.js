@@ -16,7 +16,6 @@ const userFixtures = require('scr/test/fixtures/user-fixtures')
 describe('create user with success', () => {
   describe('given an valid user', () => {
     const user = userFixtures.valid()
-    user.cherere = 'lets see it'
     describe('and user repository returns success', () => {
       userRepository.create = (user, callback) => {
         expect(callback).to.be.a('function')
